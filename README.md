@@ -26,7 +26,15 @@ The nested for-loop may tip you off that this function is O(_n_<sup>2</sup>). Bu
 
 Roughly speaking, the Fundamental Counting Principle states that if there are _n_ ways to do one thing, and there are _m_ ways to do another thing, then there are _n_ * _m_ ways to do the first thing and the second thing. 
 
-Here's an example: at Chipotle, there are six different dishes you can order: a burrito, a bowl, a salad, hard tacos (corn), soft tacos (corn), and soft tacos (flour). For each of these, you can also choose one of five different proteins: steak, carnitas, chicken, barbacoa, and sofritas. This means that altogether there are 6 * 5 = 30 lunch options from among these choices. Here's a diagram showing the choices (each line represents one lunch option):
+Here's an example: at Chipotle, there are six different dishes you can order: a burrito, a bowl, a salad, hard tacos (corn), soft tacos (corn), and soft tacos (flour):
+
+IMAGE HERE
+
+For each of these, you can also choose one of five different proteins: steak, carnitas, chicken, barbacoa, and sofritas: 
+
+IMAGE HERE
+
+This means that altogether there are 6 * 5 = 30 lunch options from among these choices. Here's a diagram showing the choices (each line represents one lunch option):
 
 DIAGRAM GOES HERE
 
