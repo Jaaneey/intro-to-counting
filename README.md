@@ -160,6 +160,13 @@ Here's a list of all the types of hands you can be dealt:
 | Two Pair | Exactly two pairs of cards have the same value | A&clubs;, A&hearts;, 6&diams;, 6&clubs;, J&spades; |
 | One Pair | Exactly two cards have the same value | 2&diams;, 2&clubs;, 7&diams;, 8&spades;, Q&clubs; |
 
+Supposed you're asked with determining in how many ways one could obtain each of these hands. There are a few ways you could go about this task:
+
+1. Programatically, deterministic: 
+2. Programatically, probabalistic:
+3. Mathematically!
+
+**EXERCISES**
 
 
 ### Resources
