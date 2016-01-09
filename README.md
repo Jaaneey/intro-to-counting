@@ -114,12 +114,54 @@ Of course, this can be generalized to an array of any size. In general, we have 
 1. How many premutations of the array `[1, 2, 3, 4]` are there? List them all.
 2. How many permutations of the array `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]` are there? Why would it be impractical to list them all out?
 
-**EXERCISE (Bonus!)** Complete [this kata](http://www.codewars.com/kata/permutations) on permutations.
+**EXERCISE (Bonus!)** Complete [this kata](http://www.codewars.com/kata/permutations-of-an-array-and-associated-values), which requires some knowledge of permutations. Or [this one](http://www.codewars.com/kata/permutations).
+
+**Note**: Permutations are a useful way to think about [bogo sort](https://en.wikipedia.org/wiki/Bogosort). In bogosort, you take a random permutation of your array, check if it's sorted; if it is, you return the sorted array, and if not, you take another random permutation. So, if the array has length _n_ and has all distinct elements, there's only 1 permutation that is sorted out of n! permutations, which means the probability that any one permutation will be the sorted one is only 1/_n_!.
 
 ### Combinations
 
 How many ways are there to draw a 5-card hand from a deck of 52 cards? Given what you know about permutations, you might be tempted to say that the answer is 52 * 51 * 50 * 49 * 48 = 311,875,200. This is because you have 52 options for your first card, then 51 options for your second (every card is available except your first card), 50 options for your third (every card is available except your first two cards), and so on. However, typically the order of the cards in your hand doesn't matter. This hand:
 
+IMAGE HERE
+
 is the same as this hand:
 
+IMAGE HERE
+
 because the cards are the same, they've just been rearranged.
+
+So again: how many ways are there to draw a 5-card hand from a deck fo 52 cards? Since we don't care about permutations of a given hand, we need to _divide_ the 311,875,200 by the number of permutations of five cards. The number of permutations of five cards is 5! = 120, so this means the total number of hands is 311,875,200 / 120 = 2,598,960.
+
+Confused? Let's take a quick look at a simpler example: suppose we have a deck with only six cards: an ace of hearts (AH), a two of hearts (2H), a three of hearts (3H), an ace of clubs (AC), a two of clubs (2C), and a three of clubs (3C):
+
+IMAGE HERE
+
+How many ways are there to make a 3-card hand from this deck?
+
+The answer isn't 6 * 5 * 4 = 120, since the order of the cards don't matter. Here are all 120 possibilities, arranged by hand:
+
+As you can see, those 120 arrangements of 3 cards fit in to 120/6 = 20 different hands, each one with 6 permutations in it (corresponding to the 6 permutations of a set of 3 cards).
+
+### Poker!
+
+Let's apply what we've learned about combinations to the game of Poker. Well, a simplified version of Poker anyway. Consider the following scenario: you're dealt 5 cards from a deck of 52. You may recall that every card has a suit (Club (&clubs;), Diamond (&diams;), Heart (&hearts;), or Spade (&spades;)), and a value (**A**ce, **2**, **3**, **4**, **5**, **6**, **7**, **8**, **9**, **10**, **J**ack, **Q**ueen, or **K**ing). You want to know how likely it is that you're dealt one of any number of favorable poker hands.
+
+Here's a list of all the types of hands you can be dealt:
+
+| Hand | Description | Example|
+| --- | --- | --- |
+| Royal Flush | A straight flush where the lowest value card is 10 | 10&hearts;, J&hearts;, Q&hearts;, K&hearts;, A&hearts;|
+| Straight Flush | A straight and a flush (but not a royal flush) | 3&diams;, 4&diams;, 5&diams;, 6&diams;, 7&diams; |
+| Four of a Kind | Four cards have the same value | 6&hearts;, 6&diams;, 6&clubs;, 6&spades;, J&hearts; |
+| [Full House](https://www.youtube.com/watch?v=agZ0qQ8lYDk) | A three of a kind and a pair | 4&diams;, 4&clubs;, 4&spades;, Q&hearts;, Q&diams; |
+| Flush | All cards have the same suit (but not a straight) | 2&clubs;, 5&clubs;, 8&clubs;, 9&clubs;, J&clubs; |
+| Straight | Cards are sequential (but not a flush) | 4&clubs;, 5&diams;, 6&diams;, 7&hearts;, 8&clubs; |
+| Three of a Kind | Exactly Three cards have the same value (but not a full house) | 8&diams;, 8&clubs;, 8&spades;, 4&diams;, A&spades; |
+| Two Pair | Exactly two pairs of cards have the same value | A&clubs;, A&hearts;, 6&diams;, 6&clubs;, J&spades; |
+| One Pair | Exactly two cards have the same value | 2&diams;, 2&clubs;, 7&diams;, 8&spades;, Q&clubs; |
+
+
+
+### Resources
+
+[JS-Combinatorics (node module)](https://www.npmjs.com/package/js-combinatorics)
