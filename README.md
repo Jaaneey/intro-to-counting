@@ -98,7 +98,7 @@ function moreMultiplicationStatements(n,m,l) {
 
 Once you know about the Fundamental Counting Principle, you can begin to count more complicated sets of objects. 
 
-One common counting problem is to count the number of _permutations_, or rearrangements, of som set of numbers. For example, consider the array `[1, 2, 3]`. There are six permutations of this array:
+One common counting problem is to count the number of _permutations_, or rearrangements, of some set of numbers. For example, consider the array `[1, 2, 3]`. There are six permutations of this array:
 
 ```js
 [1, 2, 3]
