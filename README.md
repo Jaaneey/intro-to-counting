@@ -2,9 +2,19 @@
 
 ### Introduction: Who Cares?
 
+[This guy](http://www.skorks.com/2010/03/you-dont-need-math-skills-to-be-a-good-developer-but-you-do-need-them-to-be-a-great-one/). And you should, too!
+
 ### Prerequisites
 
+You should be familiar with big-O notation before working through this material. If you're not, check out the relevant material in the [computer science curriculum](https://github.com/gSchool/computer-science-curriculum).
+
 ### Objectives
+
+By the end of this workshop, you should be able to:
+
+* State the Fundamental Counting Principle
+* Apply the Fundamental Counting Principle to simple counting problems
+* Know the difference between a permutation and a combination, and be able to calculate with both
 
 ### Warmup
 
@@ -34,9 +44,9 @@ For each of these, you can also choose one of five different proteins: steak, ca
 
 ![Chipotle 1](./images/chipotle2.png)
 
-This means that altogether there are 6 * 5 = 30 lunch options from among these choices. Here's a diagram showing the choices (each line represents one lunch option):
+This means that altogether there are 6 * 5 = 30 lunch options from among these choices. 
 
-DIAGRAM GOES HERE
+**EXERCISE** List out all 30 options.
 
 In the same way, in our function `multiplicationStatements(n)` above, there are `n` possible values for `i` and `n` possible values for `j`. So, by the Fundamental Counting Principle, there are `n * n` possible values for the pair `(i,j)`. 
 
@@ -122,25 +132,29 @@ Of course, this can be generalized to an array of any size. In general, we have 
 
 How many ways are there to draw a 5-card hand from a deck of 52 cards? Given what you know about permutations, you might be tempted to say that the answer is 52 * 51 * 50 * 49 * 48 = 311,875,200. This is because you have 52 options for your first card, then 51 options for your second (every card is available except your first card), 50 options for your third (every card is available except your first two cards), and so on. However, typically the order of the cards in your hand doesn't matter. This hand:
 
-IMAGE HERE
+![Hand 1](./images/hand1.png)
 
 is the same as this hand:
 
-IMAGE HERE
+![Hand 2](./images/hand2.png)
 
 because the cards are the same, they've just been rearranged.
 
 So again: how many ways are there to draw a 5-card hand from a deck fo 52 cards? Since we don't care about permutations of a given hand, we need to _divide_ the 311,875,200 by the number of permutations of five cards. The number of permutations of five cards is 5! = 120, so this means the total number of hands is 311,875,200 / 120 = 2,598,960.
 
-Confused? Let's take a quick look at a simpler example: suppose we have a deck with only six cards: an ace of hearts (AH), a two of hearts (2H), a three of hearts (3H), an ace of clubs (AC), a two of clubs (2C), and a three of clubs (3C):
+Confused? Let's take a quick look at a simpler example: suppose we have a deck with only four cards: an ace of clubs (AC), a two of clubs (2C), an ace of hearts (AH), and a two of hearts (2H):
 
-IMAGE HERE
+![Mini Deck](./images/minideck.png)
 
-How many ways are there to make a 3-card hand from this deck?
+How many ways are there to make a 2-card hand from this deck?
 
-The answer isn't 6 * 5 * 4 = 120, since the order of the cards don't matter. Here are all 120 possibilities, arranged by hand:
+The answer isn't 4 * 3 = 12, since the order of the cards don't matter. Here are all 12 possibilities, arranged by hand:
 
-As you can see, those 120 arrangements of 3 cards fit in to 120/6 = 20 different hands, each one with 6 permutations in it (corresponding to the 6 permutations of a set of 3 cards).
+![Mini Hands](./images/minihands.png)
+
+As you can see, those 12 arrangements of 2 cards fit in to 12/2 = 6 different hands, each one with 2 permutations in it (corresponding to the 2 permutations of a set of 2 cards).
+
+In general, the number of combinations of *k* elements from a set of *n* elements is equal to n * (n - 1) * ... * (n - k + 1)/k!. Or, to put it another way, as n!/((n-k)!*k!). This is sometimes written as <sub>_n_</sub>_C_<sub>_k_</sub>. For more on these values (also known as Binomial coefficients), check out [this article](https://en.wikipedia.org/wiki/Binomial_coefficient).
 
 ### Poker!
 
@@ -162,13 +176,19 @@ Here's a list of all the types of hands you can be dealt:
 
 Supposed you're asked with determining in how many ways one could obtain each of these hands. There are a few ways you could go about this task:
 
-1. Programatically, deterministic: 
-2. Programatically, probabalistic:
-3. Mathematically!
+1. Programatically, deterministic: write a program to generate all possible poker hands, then check each hand for whether it falls into any of the categories above. This approach will work, though debugging a list of nearly 3 million poker hands to make sure your code is correct is, to say the least, non-trivial. 
+2. Programatically, probabalistic: Write some code to draw a hand at random, check whether it is any of the hands in the table, then rinse and repeat millions of times. Implementation here is simpler, but you'll need a really large number of trials to get good estimates for the likelihood of being dealt the rare hands (e.g. a royal flush).
+3. Mathematically! Determining the likelihood for these hands is really just a sequence of counting exercises. 
+
+For example, to get a full house, you have <sub>13</sub>_C_<sub>1</sub> = 13 ways to choose a value for the three-of-a-kind, and <sub>4</sub>_C_<sub>3</sub> = 4 ways to choose the three suits from among the four total. Next, there are <sub>12</sub>_C_<sub>1</sub> = 12 ways to choose a value for the pair (since the value can't be the same as the value for the three-of-a-kind), and there are <sub>4</sub>_C_<sub>2</sub> = 6 ways to choose the two suits from among the four total. Therefore, by the fundamental counting principle, there are 13 * 4 * 12 * 6 = 3.744 ways to get dealt a full house. Since there are <sub>52</sub>_C_<sub>5</sub> = 2,598,960 different poker hands, this means the probability of getting dealt a full house is 3,744/2,598,960, or around 0.14%.
 
 **EXERCISES**
 
+1. Use math to calculate the likelihood of being dealt each of the remaining hands in the table.
+2. (Bonus!) Use a deterministic program to verify your math results.
+3. (Bonus!) Use a probabilistic program to verify your math results.
 
 ### Resources
 
+[Math.js](http://mathjs.org/)
 [JS-Combinatorics (node module)](https://www.npmjs.com/package/js-combinatorics)
