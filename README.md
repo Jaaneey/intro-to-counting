@@ -191,4 +191,5 @@ For example, to get a full house, you have <sub>13</sub>_C_<sub>1</sub> = 13 way
 ### Resources
 
 [Math.js](http://mathjs.org/)
+
 [JS-Combinatorics (node module)](https://www.npmjs.com/package/js-combinatorics)
